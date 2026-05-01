@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="kali_blue">#FF367BF0</color>
+    <color name="kali_blue_dark">#FF1E5BC6</color>
+    <color name="background_dark">#FF0E0E10</color>
+    <color name="surface_dark">#FF1A1A1F</color>
+    <color name="surface_variant">#FF26262E</color>
+    <color name="text_primary">#FFFFFFFF</color>
+    <color name="text_secondary">#FFB3B3B8</color>
+    <color name="border">#FF2E2E36</color>
+    <color name="ic_launcher_background">#FF367BF0</color>
+</resources>

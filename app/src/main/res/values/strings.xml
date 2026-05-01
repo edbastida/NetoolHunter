@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NetoolHunter</string>
+
+    <!-- Bottom nav -->
+    <string name="tab_home">Inicio</string>
+    <string name="tab_tools">Herramientas</string>
+    <string name="tab_repos">Repos</string>
+    <string name="tab_terminal">Terminal</string>
+    <string name="tab_installed">Instaladas</string>
+
+    <!-- Common -->
+    <string name="action_install">Instalar</string>
+    <string name="action_uninstall">Desinstalar</string>
+    <string name="action_apply">Aplicar cambios</string>
+    <string name="action_cancel">Cancelar</string>
+    <string name="action_confirm">Confirmar</string>
+    <string name="action_clear">Limpiar</string>
+    <string name="action_add_custom">Añadir repo</string>
+    <string name="action_search">Buscar</string>
+    <string name="action_back">Volver</string>
+
+    <!-- States -->
+    <string name="state_installed">Instalado</string>
+    <string name="state_installing">Instalando…</string>
+    <string name="state_running">En ejecución</string>
+    <string name="state_done">Completado</string>
+    <string name="state_failed">Falló</string>
+    <string name="state_idle">Sin actividad</string>
+
+    <!-- Home -->
+    <string name="home_title">NetoolHunter</string>
+    <string name="home_subtitle">Tu arsenal Kali en un tap</string>
+
+    <!-- Tools -->
+    <string name="tools_title">Herramientas</string>
+    <string name="tools_search_hint">Buscar herramientas…</string>
+    <string name="tools_empty">Ninguna herramienta coincide con tu búsqueda.</string>
+    <string name="tools_filter_all">Todas</string>
+
+    <!-- Repos -->
+    <string name="repos_title">Repositorios</string>
+    <string name="repos_apply_confirm_title">Aplicar repositorios</string>
+    <string name="repos_apply_confirm_body">Se sobrescribirá sources.list del chroot Kali. Se hará backup en .bak. ¿Continuar?</string>
+    <string name="repos_add_dialog_title">Añadir repo custom</string>
+    <string name="repos_field_name">Nombre</string>
+    <string name="repos_field_source_line">Línea sources.list</string>
+    <string name="repos_applied_toast">Repositorios aplicados</string>
+
+    <!-- Terminal -->
+    <string name="terminal_title">Terminal</string>
+    <string name="terminal_empty">Aún no se ha ejecutado ningún comando.</string>
+
+    <!-- Installed -->
+    <string name="installed_title">Instaladas</string>
+    <string name="installed_empty">No detectamos herramientas instaladas en el chroot.</string>
+    <string name="installed_scanning">Escaneando…</string>
+    <string name="installed_uninstall_confirm_title">Desinstalar %1$s</string>
+    <string name="installed_uninstall_confirm_body">Esto eliminará %1$s del chroot Kali. ¿Confirmar?</string>
+
+    <!-- Prerequisites -->
+    <string name="prereqs_title">Configuración inicial</string>
+    <string name="prereqs_subtitle">NetoolHunter necesita acceso root y un chroot Kali NetHunter funcional.</string>
+    <string name="prereqs_check_root">Acceso root (su)</string>
+    <string name="prereqs_check_nh">Acceso al chroot Kali (nh / bootkali)</string>
+    <string name="prereqs_check_chroot">Chroot Kali en /data/local/nhsystem/kali-arm64</string>
+    <string name="prereqs_check_pkgs">Paquetes base (git, go, python3-pip, pipx, docker)</string>
+    <string name="prereqs_install_pkgs">Instalar paquetes base</string>
+    <string name="prereqs_install_pkgs_confirm_title">Instalar prerequisitos</string>
+    <string name="prereqs_install_pkgs_confirm_body">Se ejecutará apt install -y git golang python3-pip pipx docker.io en el chroot. Puede tardar varios minutos.</string>
+    <string name="prereqs_continue">Continuar</string>
+    <string name="prereqs_recheck">Volver a comprobar</string>
+    <string name="prereqs_blocked_root">Sin root no se puede continuar. Instala Magisk o equivalente y reinicia la app.</string>
+    <string name="prereqs_blocked_namespace">No vemos los binarios del módulo NetHunter aunque tengamos root. Tu manager de root está aislando esta app del entorno NetHunter.\n\n• KernelSU Next: abre el manager → Apps con superusuario → NetoolHunter → Perfil de Aplicación → tab \"Plantilla\" → selecciona \"nethunter.root\".\n• KernelSU clásico: ajusta \"Mount Namespace Mode\" a Global y otorga capabilities de NetHunter.\n• Magisk: SuperUser → NetoolHunter → modo de mount global.\n\nDespués: Ajustes Android → Apps → NetoolHunter → Forzar detención. Reabre la app.</string>
+    <string name="prereqs_blocked_ksu_next">Detectamos KernelSU Next. Para que NetoolHunter vea el módulo NetHunter:\n\n1. Abre KernelSU Next manager → Apps con superusuario → NetoolHunter.\n2. Perfil de Aplicación → tab \"Plantilla\".\n3. En el dropdown selecciona \"nethunter.root\".\n4. Sal del manager y forzar detención de NetoolHunter (Ajustes Android → Apps → NetoolHunter → Forzar detención).\n5. Reabre NetoolHunter.\n\nLa plantilla \"nethunter.root\" otorga el namespace global + las capabilities (CAP_SYS_CHROOT, etc.) que el chroot Kali necesita.</string>
+    <string name="prereqs_blocked_ksu">Detectamos KernelSU. Para que NetoolHunter vea el módulo NetHunter:\n\n1. Abre KernelSU manager → Apps con superusuario → NetoolHunter.\n2. Cambia \"Mount Namespace Mode\" a \"Global Mount\".\n3. Otorga capabilities CAP_SYS_CHROOT y CAP_SYS_ADMIN.\n4. Forzar detención de NetoolHunter y reabre.\n\nSi tu KernelSU no expone esas capabilities directamente, plantéate migrar a KernelSU Next (incluye plantilla \"nethunter.root\" lista para usar).</string>
+    <string name="prereqs_blocked_apatch">Detectamos APatch. Para que NetoolHunter vea el módulo NetHunter:\n\n1. Abre APatch manager → Apps con superusuario → NetoolHunter.\n2. Perfil de Aplicación → asegúrate que el namespace está en modo Global y las capabilities incluyen CAP_SYS_CHROOT.\n3. Forzar detención de NetoolHunter (Ajustes Android → Apps → NetoolHunter → Forzar detención) y reabre.</string>
+    <string name="prereqs_blocked_magisk">Detectamos Magisk. Verifica:\n\n1. Magisk manager → SuperUser → NetoolHunter está autorizada.\n2. NetHunter está instalado como módulo de Magisk (no solo el chroot manager).\n3. Si estás en Magisk Delta o variantes con DenyList aplicada a NetoolHunter, sácala de la lista.\n4. Forzar detención (Ajustes Android → Apps → NetoolHunter) y reabre.</string>
+
+    <!-- Categories -->
+    <string name="cat_recon">Reconocimiento</string>
+    <string name="cat_osint">OSINT</string>
+    <string name="cat_web">Web</string>
+    <string name="cat_wireless">Wireless</string>
+    <string name="cat_exploitation">Explotación</string>
+    <string name="cat_ad">Red / AD</string>
+    <string name="cat_passwords">Contraseñas</string>
+    <string name="cat_android">Android / Reversing</string>
+    <string name="cat_forensics">Forense</string>
+    <string name="cat_wordlists">Wordlists / Payloads</string>
+
+    <!-- Notifications -->
+    <string name="notif_channel_install">Instalaciones</string>
+    <string name="notif_install_title">Instalando %1$s</string>
+    <string name="notif_install_body">El proceso continúa en segundo plano.</string>
+
+    <!-- Errors -->
+    <string name="error_no_root">No se detectó acceso root.</string>
+    <string name="error_no_nh">No se detectó wrapper para el chroot Kali (nh ni bootkali).</string>
+    <string name="error_generic">Algo salió mal.</string>
+</resources>
