@@ -1441,6 +1441,19 @@
         "badusb",
         "payloads"
       ]
-    }
+    },
+    {
+        "id": "wifiattack",
+        "name": "wifiAttack",
+        "description": "Automatiza ataques WiFi (WEP y WPA/WPA2-PSK) para obtener la contraseña.",
+        "category": "WIRELESS",
+        "emoji": "🛠",
+        "installer": {
+          "type": "git",
+          "repo": "https://github.com/m4lal0/wifiAttack.git",
+          "cloneTo": "/opt/wifiattack"
+        },
+        "tags": ["wifi", "wpa", "wep", "auto"]
+      }    
   ]
 }
