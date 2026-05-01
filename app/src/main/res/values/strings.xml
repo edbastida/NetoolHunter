@@ -97,7 +97,7 @@
     <!-- Catalog update -->
     <string name="catalog_update_action">Buscar actualizaciones</string>
     <string name="catalog_update_confirm_title">Actualizar catálogo</string>
-    <string name="catalog_update_confirm_body">Se descargará la última lista de herramientas desde el repo en GitHub. Esta es la única operación de red que NetoolHunter realiza, y requiere tu confirmación cada vez.</string>
+    <string name="catalog_update_confirm_body">Se descargará la última lista de herramientas desde el repo en GitHub. La descarga la realiza el chroot Kali (que es quien tiene red configurada); el app no hace ninguna llamada de red por su parte. Requiere tu confirmación cada vez.</string>
 
     <!-- Errors -->
     <string name="error_no_root">No se detectó acceso root.</string>

@@ -3,6 +3,8 @@ package com.netoolhunter.app.data
 import android.content.Context
 import com.netoolhunter.app.domain.Category
 import com.netoolhunter.app.domain.Tool
+import com.netoolhunter.app.shell.KaliEntryPoint
+import com.netoolhunter.app.shell.ShellExecutor
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -11,7 +13,6 @@ import kotlinx.coroutines.withContext
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import java.io.File
-import java.net.URL
 
 @Serializable
 private data class CatalogPayload(
@@ -19,7 +20,10 @@ private data class CatalogPayload(
     val tools: List<Tool>
 )
 
-class CatalogRepository(private val context: Context) {
+class CatalogRepository(
+    private val context: Context,
+    private val shell: ShellExecutor
+) {
 
     private val json = Json {
         classDiscriminator = "type"
@@ -55,16 +59,30 @@ class CatalogRepository(private val context: Context) {
     }
 
     /**
-     * One-shot, user-triggered refresh from a remote URL. Validates by parsing
-     * before persisting — a corrupt/incomplete download won't replace the cache.
-     * The bundled assets/catalog.json is never overwritten; this writes to filesDir.
+     * One-shot, user-triggered refresh. Downloads the JSON via curl/wget INSIDE
+     * the Kali chroot (which has working network — same path that runs
+     * `apt-get update`). The app's own JVM doesn't make any network call; this
+     * is what lets us keep the manifest free of `INTERNET` permission.
+     *
+     * Validates by parsing before persisting — a corrupt or partial download
+     * won't replace the cache. Bundled assets/catalog.json is never overwritten;
+     * this writes to filesDir.
      */
     suspend fun updateFromUrl(url: String = DEFAULT_URL): UpdateResult = withContext(Dispatchers.IO) {
         try {
-            val raw = URL(url).openConnection().apply {
-                connectTimeout = 10_000
-                readTimeout = 15_000
-            }.getInputStream().bufferedReader().use { it.readText() }
+            val safeUrl = url.replace("'", "'\\''")
+            val fetchCmd = "curl -fsSL --max-time 30 '$safeUrl' " +
+                "|| wget -qO- --timeout=30 '$safeUrl'"
+            val result = shell.execCapture(KaliEntryPoint.wrap(fetchCmd))
+            if (result.exit != 0) {
+                return@withContext UpdateResult.Failed(
+                    "Descarga falló (exit=${result.exit}). ${result.stderr.take(200)}"
+                )
+            }
+            val raw = result.stdout
+            if (raw.isBlank()) {
+                return@withContext UpdateResult.Failed("Respuesta vacía de la URL")
+            }
             val parsed = json.decodeFromString(CatalogPayload.serializer(), raw)
             cachedFile.writeText(raw)
             _tools.value = parsed.tools

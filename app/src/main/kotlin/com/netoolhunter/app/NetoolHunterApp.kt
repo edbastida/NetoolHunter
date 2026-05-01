@@ -25,7 +25,7 @@ class NetoolHunterApp : Application() {
     val rootChecker: RootChecker by lazy { RootChecker() }
     val dataStore: DataStore<Preferences> by lazy { netoolDataStore }
     val repos: ReposRepository by lazy { ReposRepository(dataStore, shell) }
-    val catalog: CatalogRepository by lazy { CatalogRepository(this) }
+    val catalog: CatalogRepository by lazy { CatalogRepository(this, shell) }
     val installed: InstalledRepository by lazy { InstalledRepository(shell, catalog) }
     val prereqs: PrerequisitesChecker by lazy { PrerequisitesChecker(shell, rootChecker) }
     val rootManagerDetector: RootManagerDetector by lazy { RootManagerDetector(this) }
