@@ -1,54 +1,57 @@
 # NetoolHunter
 
-Gestor visual Android para herramientas de pentesting que viven en el chroot Kali NetHunter. Permite instalar, desinstalar, lanzar y gestionar 92 herramientas (recon, web, wireless, exploitation, AD, passwords, forensics, wordlists…) desde una UI nativa, en lugar de tirar comandos a mano dentro del chroot.
+Visual Android manager for the pentest tools shipped with the Kali NetHunter chroot. Install, uninstall and track 92 tools across recon, OSINT, web, wireless, exploitation, AD, passwords, Android/reversing, forensics and wordlists from a native UI — instead of typing commands by hand inside the chroot.
 
-App **100 % offline**: no telemetría, no tracking, no analíticas, no red. El catálogo de herramientas está hardcoded — modificarlo requiere recompilar.
+**Fully offline.** No telemetry, no tracking, no analytics, no network calls. The tool catalog is hard-coded; modifying it requires recompiling.
 
-## Capturas
+> The in-app UI is currently Spanish-only. Contributions to translate the strings to other languages are welcome.
 
-_(añade screenshots aquí cuando los tengas)_
+## Screenshots
 
-## Requisitos
+_(add screenshots here when you have them)_
+
+## Requirements
 
 - **Android 8.0+** (API 26).
-- **Device rooteado** con un manager soportado:
-  - **KernelSU Next** (recomendado — incluye plantilla `nethunter.root` lista para usar).
-  - KernelSU clásico, Magisk, APatch.
-- **NetHunter Chroot** instalado y funcionando (módulo Magisk/KSU + chroot Kali en `/data/local/nhsystem/kali-arm64`).
-- ~5 GB libres en `/data` para los paquetes base que instala (`git`, `golang`, `python3-pip`, `pipx`, `docker.io`).
+- **Rooted device** with one of the supported root managers:
+  - **KernelSU Next** (recommended — ships a ready-to-use `nethunter.root` template).
+  - Classic KernelSU, Magisk, APatch.
+- **NetHunter chroot** installed and working (Magisk/KSU module + Kali chroot at `/data/local/nhsystem/kali-arm64`).
+- ~5 GB free in `/data` for the base packages it installs (`git`, `golang`, `python3-pip`, `pipx`, `docker.io`).
 
-### Configuración inicial del manager de root
+### Root manager setup
 
-NetoolHunter ejecuta comandos en el chroot vía `nh -r` o `bootkali_bash` (o `chroot` directo como fallback). Para que el shell del app vea los binarios del módulo NetHunter, el manager de root tiene que aplicar el **mount namespace global + capabilities CAP_SYS_CHROOT**.
+NetoolHunter runs commands inside the chroot via `nh -r`, `bootkali_bash`, or a raw `chroot` fallback. For the app's su context to see the NetHunter module's binaries, your root manager must apply a **global mount namespace + CAP_SYS_CHROOT** to NetoolHunter.
 
-- **KernelSU Next**: KernelSU Next manager → Apps con superusuario → NetoolHunter → Perfil de Aplicación → tab "Plantilla" → seleccionar **`nethunter.root`** → forzar detención de la app y reabrir.
-- **KernelSU clásico**: Mount Namespace Mode → Global Mount + capabilities CAP_SYS_CHROOT, CAP_SYS_ADMIN.
-- **Magisk**: confirmar que NetoolHunter está autorizada en SuperUser y que NetHunter está instalado como módulo Magisk.
+- **KernelSU Next**: KernelSU Next manager → SuperUser apps → NetoolHunter → App Profile → "Template" tab → select **`nethunter.root`** → force-stop the app and reopen.
+- **Classic KernelSU**: Mount Namespace Mode → Global Mount; capabilities CAP_SYS_CHROOT, CAP_SYS_ADMIN.
+- **Magisk**: confirm NetoolHunter is granted in SuperUser and that NetHunter is installed as a Magisk module.
+- **APatch**: App Profile → namespace Global + capabilities including CAP_SYS_CHROOT.
 
-La propia app detecta tu manager y muestra los pasos exactos en pantalla si el chroot no responde.
+The app auto-detects your manager and displays the exact steps on the prerequisites screen if the chroot can't be reached.
 
-## Instalación
+## Installation
 
-### Vía APK release
+### Pre-built APK
 
-Descarga el APK firmado desde la pestaña [Releases](../../releases). Instálalo:
+Download the signed APK from the [Releases](../../releases) tab and install:
 
 ```bash
 adb install app-release.apk
 ```
 
-Aplica la configuración del manager de root descrita arriba.
+Then apply the root manager configuration described above.
 
-### Compilando desde código fuente
+### Build from source
 
 ```bash
 git clone https://github.com/edbastida/NetoolHunter.git
 cd NetoolHunter
-./gradlew assembleDebug          # APK debug en app/build/outputs/apk/debug/
-./gradlew assembleRelease        # APK release (requiere keystore.properties — ver abajo)
+./gradlew assembleDebug          # debug APK in app/build/outputs/apk/debug/
+./gradlew assembleRelease        # release APK (requires keystore.properties — see below)
 ```
 
-Para `assembleRelease` necesitas un keystore propio. Genera uno y crea `keystore.properties` (gitignored):
+For `assembleRelease` you need your own keystore. Generate one and create `keystore.properties` (gitignored):
 
 ```bash
 mkdir -p keystore
@@ -56,67 +59,67 @@ keytool -genkey -v -keystore keystore/netoolhunter-release.jks \
   -alias netoolhunter -keyalg RSA -keysize 2048 -validity 10000
 
 cp keystore.properties.template keystore.properties
-# Edita keystore.properties con tu password
+# Edit keystore.properties with your password
 ```
 
-## Stack técnico
+## Tech stack
 
 - Kotlin 2.0 + Jetpack Compose (BOM 2024.10)
 - Material 3 + Navigation Compose
 - DataStore Preferences + Coroutines/Flow
-- Sin DI framework (constructor injection manual)
-- Sin DB, sin red
+- No DI framework (manual constructor injection)
+- No database, no network
 
-## Arquitectura
+## Architecture
 
 ```
-domain/      Modelos puros (Tool, Category, Installer sealed, Repo, InstallEvent)
-data/        ToolsCatalog (92 tools hardcoded), DefaultRepos, ReposRepository,
+domain/      Pure models (Tool, Category, Installer sealed, Repo, InstallEvent)
+data/        ToolsCatalog (92 tools, hard-coded), DefaultRepos, ReposRepository,
              InstalledRepository, PrerequisitesChecker, RootManagerDetector
-shell/       ShellExecutor (Flow<InstallEvent>), KaliEntryPoint (resolución
-             nh / bootkali / raw chroot), KaliCommand, RootChecker, TerminalBus,
-             InstallForegroundService
-ui/screens/  Pareja Screen.kt + ViewModel.kt por pantalla (Tools, Installed,
+shell/       ShellExecutor (Flow<InstallEvent>), KaliEntryPoint (resolves
+             nh / bootkali / raw chroot at runtime), KaliCommand, RootChecker,
+             TerminalBus, InstallForegroundService
+ui/screens/  One Screen.kt + ViewModel.kt pair per screen (Tools, Installed,
              Prerequisites, Repos, Terminal)
 ui/components/   ToolCard, TerminalView, ConfirmDialog, …
 ui/navigation/   Routes (sealed), BottomBar, NavHost
-ui/theme/    Color (KaliBlue + dark forzado), Type, Theme
+ui/theme/    Color (KaliBlue + forced dark), Type, Theme
 ```
 
-Toda comunicación entre `ShellExecutor` y la UI pasa por `TerminalBus` (singleton `MutableSharedFlow<InstallEvent>`). Las instalaciones largas viven en un Foreground Service para sobrevivir al lock screen.
+All communication between `ShellExecutor` and the UI goes through `TerminalBus` (a singleton `MutableSharedFlow<InstallEvent>`). Long installs run inside a Foreground Service so they survive the lock screen.
 
-## Reglas no negociables
+## Non-negotiable rules
 
-1. Comandos del chroot SIEMPRE vía `ShellExecutor.execInKali` (resuelve el wrapper en runtime — `nh`, `bootkali_bash`, o `chroot` raw como fallback).
-2. Antes de tocar `sources.list`, backup `.bak` automático.
-3. Confirm dialog obligatorio antes de: aplicar repos, desinstalar tool, instalar prerequisitos.
-4. Catálogo hardcoded. NO se carga desde JSON/red.
-5. Sin tracking, analytics ni crash reporting de terceros. Privacidad total.
-6. Material 3 + dark forzado.
+1. Chroot commands ALWAYS go through `ShellExecutor.execInKali` — it resolves the wrapper at runtime (`nh`, `bootkali_bash`, or raw `chroot` as last fallback).
+2. Before touching `sources.list`, an automatic `.bak` backup is written.
+3. Confirmation dialog is mandatory before: applying repo changes, uninstalling a tool, installing prerequisites.
+4. Catalog is hard-coded. Never loaded from JSON/network.
+5. No tracking, analytics, or third-party crash reporting. Privacy-first.
+6. Material 3 + forced dark theme.
 
-## Catálogo
+## Catalog
 
-92 herramientas en 10 categorías:
+92 tools across 10 categories:
 
-| Categoría | Ejemplos |
+| Category | Examples |
 |---|---|
-| Reconocimiento | nmap, masscan, amass, theharvester |
+| Reconnaissance | nmap, masscan, amass, theharvester |
 | OSINT | sherlock, socialscan, holehe |
 | Web | burpsuite, gobuster, ffuf, sqlmap, nikto |
 | Wireless | aircrack-ng, kismet, wifite, reaver |
-| Explotación | metasploit, exploitdb, set, beef-xss |
-| Red / AD | impacket, crackmapexec, responder, bloodhound |
-| Contraseñas | hydra, john, hashcat, medusa, crunch |
+| Exploitation | metasploit, exploitdb, set, beef-xss |
+| Network / AD | impacket, crackmapexec, responder, bloodhound |
+| Passwords | hydra, john, hashcat, medusa, crunch |
 | Android / Reversing | apktool, jadx, frida, radare2, ghidra |
-| Forense | volatility, autopsy, foremost, binwalk |
+| Forensics | volatility, autopsy, foremost, binwalk |
 | Wordlists / Payloads | seclists, rockyou, payloadsallthethings |
 
-Lista completa en `app/src/main/kotlin/com/netoolhunter/app/data/ToolsCatalog.kt`.
+Full list in `app/src/main/kotlin/com/netoolhunter/app/data/ToolsCatalog.kt`.
 
-## Licencia
+## License
 
-[GPL-3.0](LICENSE). Compatible con el ecosistema Kali (también GPL).
+[GPL-3.0](LICENSE). Compatible with the Kali ecosystem (also GPL).
 
 ## Disclaimer
 
-Esta herramienta está pensada para **pentesting autorizado**, CTFs, investigación de seguridad defensiva, y entornos educativos. El uso contra sistemas para los que no tengas permiso explícito es ilegal en la mayoría de jurisdicciones. El autor no se responsabiliza del mal uso.
+This tool is meant for **authorized penetration testing**, CTFs, defensive security research and educational environments. Using it against systems you don't have explicit permission to test is illegal in most jurisdictions. The author is not responsible for misuse.
