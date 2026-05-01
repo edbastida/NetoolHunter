@@ -1,5 +1,8 @@
 package com.netoolhunter.app.domain
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Tool(
     val id: String,
     val name: String,

@@ -91,16 +91,16 @@ Ninguna. App 100% offline.
 2. **Antes de escribir `sources.list`, hacer backup a `.bak`.** El método `applyAndStream()` ya lo hace; no lo bypasses.
 3. **Confirm dialog obligatorio** antes de: aplicar cambios de repos, desinstalar tool, instalar prerequisitos.
 4. **TerminalBus es la única forma de mostrar output.** No leer streams desde Composables.
-5. **Catálogo de Tools es hardcoded en `ToolsCatalog.kt`.** No cargar desde JSON/red. Modificarlo = recompilar.
+5. **Catálogo vive en `app/src/main/assets/catalog.json`** (bundleado al APK) y opcionalmente en `filesDir/catalog.json` (descargado por el user). `CatalogRepository` carga el descargado si existe, si no el bundleado. La única operación de red de toda la app es `CatalogRepository.updateFromUrl()`, que se invoca **solo a petición del user** (botón "Buscar actualizaciones" en ToolsScreen) con confirmación previa. Validamos parseando antes de persistir — un download corrupto no reemplaza la cache. Para añadir tools: editar `catalog.json` en raíz del repo, commit, push; los users avanzados le dan al botón y ya. Para que llegue bundleado al siguiente APK, el `assets/catalog.json` se regenera con `cp catalog.json app/src/main/assets/catalog.json` antes de cada release.
 6. **No cachear el estado "instalado".** Siempre re-escanear cuando se entra a InstalledScreen.
 7. **Foreground Service obligatorio para instalaciones.** Si no, el OS mata el proceso al lock screen.
-8. **Sin tracking, analytics, crash reporting de terceros.** App offline-first, privacidad total.
+8. **Sin tracking, analytics, crash reporting de terceros.** App offline-first; única operación de red opcional es la actualización del catálogo a petición explícita del usuario. Privacidad total: nada se envía a ningún sitio.
 9. **Material 3 + dark forzado.** No `dynamicColor`, no light theme.
 10. **minSdk 26 firme.** No usar APIs de SDK >34. No desugaring exótico.
 
 ## Notas operativas
 
-- El catálogo contiene **92 herramientas** (no 95 como decía el header del blueprint — las tablas reales son la fuente de verdad).
+- El catálogo contiene **92 herramientas** (no 95 como decía el header del blueprint — las tablas reales son la fuente de verdad). Vive en `catalog.json` (raíz del repo + `app/src/main/assets/`).
 - El icono de launcher es un placeholder VectorDrawable. Para el icono final del blueprint hay que crear un asset PNG.
 - `gradle-wrapper.jar` no está versionado. Tras clonar/abrir el proyecto la primera vez, ejecutar `gradle wrapper --gradle-version 8.7` o dejar que Android Studio lo regenere al hacer Sync.
 - La fuente del terminal es `FontFamily.Monospace`. Para usar JetBrains Mono, dropear el `.ttf` en `res/font/` y cambiar el TODO en `ui/theme/Type.kt`.

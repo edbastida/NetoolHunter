@@ -1,0 +1,1446 @@
+{
+  "tools": [
+    {
+      "id": "nmap",
+      "name": "Nmap",
+      "description": "Escáner de red y puertos por excelencia",
+      "category": "RECON",
+      "emoji": "🔍",
+      "installer": {
+        "type": "apt",
+        "pkg": "nmap"
+      },
+      "tags": [
+        "scan",
+        "ports",
+        "network"
+      ]
+    },
+    {
+      "id": "masscan",
+      "name": "Masscan",
+      "description": "Escáner de puertos masivo a velocidad de internet",
+      "category": "RECON",
+      "emoji": "⚡",
+      "installer": {
+        "type": "apt",
+        "pkg": "masscan"
+      },
+      "tags": [
+        "scan",
+        "ports",
+        "fast"
+      ]
+    },
+    {
+      "id": "amass",
+      "name": "Amass",
+      "description": "Enumeración de subdominios y mapeo de superficie",
+      "category": "RECON",
+      "emoji": "🌐",
+      "installer": {
+        "type": "apt",
+        "pkg": "amass"
+      },
+      "tags": [
+        "subdomain",
+        "dns",
+        "asm"
+      ]
+    },
+    {
+      "id": "subfinder",
+      "name": "Subfinder",
+      "description": "Descubrimiento pasivo de subdominios",
+      "category": "RECON",
+      "emoji": "🛰️",
+      "installer": {
+        "type": "go",
+        "module": "github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest"
+      },
+      "tags": [
+        "subdomain",
+        "passive",
+        "dns"
+      ]
+    },
+    {
+      "id": "assetfinder",
+      "name": "Assetfinder",
+      "description": "Encuentra dominios y subdominios relacionados",
+      "category": "RECON",
+      "emoji": "🔭",
+      "installer": {
+        "type": "go",
+        "module": "github.com/tomnomnom/assetfinder@latest"
+      },
+      "tags": [
+        "subdomain",
+        "domain"
+      ]
+    },
+    {
+      "id": "naabu",
+      "name": "Naabu",
+      "description": "Port scanner rápido en Go",
+      "category": "RECON",
+      "emoji": "🚪",
+      "installer": {
+        "type": "go",
+        "module": "github.com/projectdiscovery/naabu/v2/cmd/naabu@latest"
+      },
+      "tags": [
+        "ports",
+        "scan",
+        "go"
+      ]
+    },
+    {
+      "id": "dnsenum",
+      "name": "dnsenum",
+      "description": "Enumeración DNS",
+      "category": "RECON",
+      "emoji": "🧬",
+      "installer": {
+        "type": "apt",
+        "pkg": "dnsenum"
+      },
+      "tags": [
+        "dns",
+        "enum"
+      ]
+    },
+    {
+      "id": "fierce",
+      "name": "Fierce",
+      "description": "Reconocimiento DNS semi-light",
+      "category": "RECON",
+      "emoji": "🐯",
+      "installer": {
+        "type": "apt",
+        "pkg": "fierce"
+      },
+      "tags": [
+        "dns",
+        "recon"
+      ]
+    },
+    {
+      "id": "theharvester",
+      "name": "theHarvester",
+      "description": "Recolección de emails, hosts, subdominios",
+      "category": "RECON",
+      "emoji": "🌾",
+      "installer": {
+        "type": "apt",
+        "pkg": "theharvester"
+      },
+      "tags": [
+        "osint",
+        "email"
+      ]
+    },
+    {
+      "id": "recon-ng",
+      "name": "Recon-ng",
+      "description": "Framework de reconocimiento web",
+      "category": "RECON",
+      "emoji": "🧰",
+      "installer": {
+        "type": "apt",
+        "pkg": "recon-ng"
+      },
+      "tags": [
+        "framework",
+        "recon"
+      ]
+    },
+    {
+      "id": "shuffledns",
+      "name": "Shuffledns",
+      "description": "Wrapper masivo de massdns",
+      "category": "RECON",
+      "emoji": "🔀",
+      "installer": {
+        "type": "go",
+        "module": "github.com/projectdiscovery/shuffledns/cmd/shuffledns@latest"
+      },
+      "tags": [
+        "dns",
+        "massdns"
+      ]
+    },
+    {
+      "id": "mapcidr",
+      "name": "Mapcidr",
+      "description": "Operaciones sobre rangos CIDR",
+      "category": "RECON",
+      "emoji": "🗺️",
+      "installer": {
+        "type": "go",
+        "module": "github.com/projectdiscovery/mapcidr/cmd/mapcidr@latest"
+      },
+      "tags": [
+        "cidr",
+        "network"
+      ]
+    },
+    {
+      "id": "sherlock",
+      "name": "Sherlock",
+      "description": "Busca un usuario en redes sociales",
+      "category": "OSINT",
+      "emoji": "🕵️",
+      "installer": {
+        "type": "git",
+        "repo": "https://github.com/sherlock-project/sherlock",
+        "postInstall": [
+          "pip install . --break-system-packages"
+        ]
+      },
+      "tags": [
+        "osint",
+        "username",
+        "social"
+      ]
+    },
+    {
+      "id": "holehe",
+      "name": "Holehe",
+      "description": "Comprueba si un email está registrado en servicios",
+      "category": "OSINT",
+      "emoji": "📧",
+      "installer": {
+        "type": "pip",
+        "pkg": "holehe"
+      },
+      "tags": [
+        "osint",
+        "email"
+      ]
+    },
+    {
+      "id": "photon",
+      "name": "Photon",
+      "description": "Crawler OSINT rápido",
+      "category": "OSINT",
+      "emoji": "📸",
+      "installer": {
+        "type": "git",
+        "repo": "https://github.com/s0md3v/Photon"
+      },
+      "tags": [
+        "crawler",
+        "osint"
+      ]
+    },
+    {
+      "id": "social-analyzer",
+      "name": "Social-Analyzer",
+      "description": "Análisis de presencia en RRSS",
+      "category": "OSINT",
+      "emoji": "📱",
+      "installer": {
+        "type": "pip",
+        "pkg": "social-analyzer"
+      },
+      "tags": [
+        "osint",
+        "social"
+      ]
+    },
+    {
+      "id": "spiderfoot",
+      "name": "SpiderFoot",
+      "description": "Automatización OSINT con +200 módulos",
+      "category": "OSINT",
+      "emoji": "🕷️",
+      "installer": {
+        "type": "apt",
+        "pkg": "spiderfoot"
+      },
+      "tags": [
+        "osint",
+        "framework",
+        "automation"
+      ]
+    },
+    {
+      "id": "maltego",
+      "name": "Maltego",
+      "description": "Plataforma gráfica de inteligencia",
+      "category": "OSINT",
+      "emoji": "🧠",
+      "installer": {
+        "type": "apt",
+        "pkg": "maltego"
+      },
+      "tags": [
+        "osint",
+        "graph"
+      ]
+    },
+    {
+      "id": "shodan",
+      "name": "Shodan CLI",
+      "description": "Cliente Python para Shodan",
+      "category": "OSINT",
+      "emoji": "🔭",
+      "installer": {
+        "type": "pip",
+        "pkg": "shodan"
+      },
+      "tags": [
+        "osint",
+        "internet",
+        "iot"
+      ]
+    },
+    {
+      "id": "censys",
+      "name": "Censys CLI",
+      "description": "Cliente Python para Censys",
+      "category": "OSINT",
+      "emoji": "📡",
+      "installer": {
+        "type": "pip",
+        "pkg": "censys"
+      },
+      "tags": [
+        "osint",
+        "internet"
+      ]
+    },
+    {
+      "id": "nikto",
+      "name": "Nikto",
+      "description": "Escáner de vulnerabilidades web",
+      "category": "WEB",
+      "emoji": "🌐",
+      "installer": {
+        "type": "apt",
+        "pkg": "nikto"
+      },
+      "tags": [
+        "web",
+        "scanner",
+        "vuln"
+      ]
+    },
+    {
+      "id": "sqlmap",
+      "name": "SQLMap",
+      "description": "Explotación automatizada de SQLi",
+      "category": "WEB",
+      "emoji": "💉",
+      "installer": {
+        "type": "apt",
+        "pkg": "sqlmap"
+      },
+      "tags": [
+        "web",
+        "sqli",
+        "injection"
+      ]
+    },
+    {
+      "id": "gobuster",
+      "name": "Gobuster",
+      "description": "Brute-force de directorios y DNS",
+      "category": "WEB",
+      "emoji": "📂",
+      "installer": {
+        "type": "apt",
+        "pkg": "gobuster"
+      },
+      "tags": [
+        "web",
+        "fuzzing",
+        "directories"
+      ]
+    },
+    {
+      "id": "ffuf",
+      "name": "ffuf",
+      "description": "Web fuzzer ultrarrápido",
+      "category": "WEB",
+      "emoji": "🔥",
+      "installer": {
+        "type": "apt",
+        "pkg": "ffuf"
+      },
+      "tags": [
+        "web",
+        "fuzzing",
+        "fast"
+      ]
+    },
+    {
+      "id": "wfuzz",
+      "name": "Wfuzz",
+      "description": "Web fuzzer flexible",
+      "category": "WEB",
+      "emoji": "🔧",
+      "installer": {
+        "type": "apt",
+        "pkg": "wfuzz"
+      },
+      "tags": [
+        "web",
+        "fuzzing"
+      ]
+    },
+    {
+      "id": "dirb",
+      "name": "Dirb",
+      "description": "Brute-force clásico de directorios",
+      "category": "WEB",
+      "emoji": "📁",
+      "installer": {
+        "type": "apt",
+        "pkg": "dirb"
+      },
+      "tags": [
+        "web",
+        "directories"
+      ]
+    },
+    {
+      "id": "burpsuite",
+      "name": "Burp Suite",
+      "description": "Proxy de interceptación líder",
+      "category": "WEB",
+      "emoji": "🛡️",
+      "installer": {
+        "type": "apt",
+        "pkg": "burpsuite"
+      },
+      "tags": [
+        "web",
+        "proxy",
+        "interception"
+      ]
+    },
+    {
+      "id": "zaproxy",
+      "name": "OWASP ZAP",
+      "description": "Proxy y scanner OWASP",
+      "category": "WEB",
+      "emoji": "⚡",
+      "installer": {
+        "type": "apt",
+        "pkg": "zaproxy"
+      },
+      "tags": [
+        "web",
+        "proxy",
+        "scanner"
+      ]
+    },
+    {
+      "id": "wpscan",
+      "name": "WPScan",
+      "description": "Auditoría de seguridad WordPress",
+      "category": "WEB",
+      "emoji": "📝",
+      "installer": {
+        "type": "apt",
+        "pkg": "wpscan"
+      },
+      "tags": [
+        "web",
+        "wordpress"
+      ]
+    },
+    {
+      "id": "commix",
+      "name": "Commix",
+      "description": "Explotación automática de command injection",
+      "category": "WEB",
+      "emoji": "💻",
+      "installer": {
+        "type": "apt",
+        "pkg": "commix"
+      },
+      "tags": [
+        "web",
+        "injection",
+        "rce"
+      ]
+    },
+    {
+      "id": "whatweb",
+      "name": "WhatWeb",
+      "description": "Fingerprinting de tecnologías web",
+      "category": "WEB",
+      "emoji": "🔍",
+      "installer": {
+        "type": "apt",
+        "pkg": "whatweb"
+      },
+      "tags": [
+        "web",
+        "fingerprint"
+      ]
+    },
+    {
+      "id": "wafw00f",
+      "name": "WAFW00F",
+      "description": "Identifica WAFs",
+      "category": "WEB",
+      "emoji": "🐺",
+      "installer": {
+        "type": "apt",
+        "pkg": "wafw00f"
+      },
+      "tags": [
+        "web",
+        "waf"
+      ]
+    },
+    {
+      "id": "httpx",
+      "name": "httpx",
+      "description": "Toolkit HTTP rápido",
+      "category": "WEB",
+      "emoji": "🚀",
+      "installer": {
+        "type": "go",
+        "module": "github.com/projectdiscovery/httpx/cmd/httpx@latest"
+      },
+      "tags": [
+        "web",
+        "http",
+        "go"
+      ]
+    },
+    {
+      "id": "nuclei",
+      "name": "Nuclei",
+      "description": "Scanner basado en plantillas YAML",
+      "category": "WEB",
+      "emoji": "☢️",
+      "installer": {
+        "type": "go",
+        "module": "github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest"
+      },
+      "tags": [
+        "web",
+        "scanner",
+        "templates"
+      ]
+    },
+    {
+      "id": "katana",
+      "name": "Katana",
+      "description": "Crawler web de nueva generación",
+      "category": "WEB",
+      "emoji": "🗡️",
+      "installer": {
+        "type": "go",
+        "module": "github.com/projectdiscovery/katana/cmd/katana@latest"
+      },
+      "tags": [
+        "web",
+        "crawler",
+        "go"
+      ]
+    },
+    {
+      "id": "dalfox",
+      "name": "Dalfox",
+      "description": "Scanner avanzado de XSS",
+      "category": "WEB",
+      "emoji": "🦊",
+      "installer": {
+        "type": "go",
+        "module": "github.com/hahwul/dalfox/v2@latest"
+      },
+      "tags": [
+        "web",
+        "xss"
+      ]
+    },
+    {
+      "id": "xsstrike",
+      "name": "XSStrike",
+      "description": "Scanner XSS inteligente",
+      "category": "WEB",
+      "emoji": "⚔️",
+      "installer": {
+        "type": "git",
+        "repo": "https://github.com/s0md3v/XSStrike",
+        "postInstall": [
+          "pip install -r requirements.txt --break-system-packages"
+        ]
+      },
+      "tags": [
+        "web",
+        "xss"
+      ]
+    },
+    {
+      "id": "arjun",
+      "name": "Arjun",
+      "description": "Descubre parámetros HTTP ocultos",
+      "category": "WEB",
+      "emoji": "🏹",
+      "installer": {
+        "type": "pip",
+        "pkg": "arjun"
+      },
+      "tags": [
+        "web",
+        "params"
+      ]
+    },
+    {
+      "id": "gau",
+      "name": "gau",
+      "description": "Get All URLs (waybackurls + commoncrawl)",
+      "category": "WEB",
+      "emoji": "🌍",
+      "installer": {
+        "type": "go",
+        "module": "github.com/lc/gau/v2/cmd/gau@latest"
+      },
+      "tags": [
+        "web",
+        "urls",
+        "wayback"
+      ]
+    },
+    {
+      "id": "waybackurls",
+      "name": "Waybackurls",
+      "description": "URLs históricas desde Wayback Machine",
+      "category": "WEB",
+      "emoji": "⏪",
+      "installer": {
+        "type": "go",
+        "module": "github.com/tomnomnom/waybackurls@latest"
+      },
+      "tags": [
+        "web",
+        "urls",
+        "wayback"
+      ]
+    },
+    {
+      "id": "gowitness",
+      "name": "Gowitness",
+      "description": "Screenshots web masivos",
+      "category": "WEB",
+      "emoji": "📸",
+      "installer": {
+        "type": "go",
+        "module": "github.com/sensepost/gowitness@latest"
+      },
+      "tags": [
+        "web",
+        "screenshot"
+      ]
+    },
+    {
+      "id": "aircrack-ng",
+      "name": "Aircrack-ng",
+      "description": "Suite WiFi (auditoría WEP/WPA)",
+      "category": "WIRELESS",
+      "emoji": "📡",
+      "installer": {
+        "type": "apt",
+        "pkg": "aircrack-ng"
+      },
+      "tags": [
+        "wifi",
+        "wep",
+        "wpa"
+      ]
+    },
+    {
+      "id": "wifite",
+      "name": "Wifite",
+      "description": "Auditor WiFi automatizado",
+      "category": "WIRELESS",
+      "emoji": "📶",
+      "installer": {
+        "type": "apt",
+        "pkg": "wifite"
+      },
+      "tags": [
+        "wifi",
+        "auto"
+      ]
+    },
+    {
+      "id": "reaver",
+      "name": "Reaver",
+      "description": "Ataques WPS",
+      "category": "WIRELESS",
+      "emoji": "🛠️",
+      "installer": {
+        "type": "apt",
+        "pkg": "reaver"
+      },
+      "tags": [
+        "wifi",
+        "wps"
+      ]
+    },
+    {
+      "id": "bully",
+      "name": "Bully",
+      "description": "Brute-force WPS alternativo a reaver",
+      "category": "WIRELESS",
+      "emoji": "🐂",
+      "installer": {
+        "type": "apt",
+        "pkg": "bully"
+      },
+      "tags": [
+        "wifi",
+        "wps"
+      ]
+    },
+    {
+      "id": "kismet",
+      "name": "Kismet",
+      "description": "Sniffer y detector wireless",
+      "category": "WIRELESS",
+      "emoji": "👁️",
+      "installer": {
+        "type": "apt",
+        "pkg": "kismet"
+      },
+      "tags": [
+        "wifi",
+        "sniffer"
+      ]
+    },
+    {
+      "id": "hcxdumptool",
+      "name": "hcxdumptool",
+      "description": "Captura PMKID/handshakes",
+      "category": "WIRELESS",
+      "emoji": "📥",
+      "installer": {
+        "type": "apt",
+        "pkg": "hcxdumptool"
+      },
+      "tags": [
+        "wifi",
+        "pmkid",
+        "handshake"
+      ]
+    },
+    {
+      "id": "fluxion",
+      "name": "Fluxion",
+      "description": "Evil twin con portal cautivo",
+      "category": "WIRELESS",
+      "emoji": "👯",
+      "installer": {
+        "type": "git",
+        "repo": "https://github.com/FluxionNetwork/fluxion"
+      },
+      "tags": [
+        "wifi",
+        "phishing",
+        "eviltwin"
+      ]
+    },
+    {
+      "id": "airgeddon",
+      "name": "Airgeddon",
+      "description": "Framework wifi todo-en-uno",
+      "category": "WIRELESS",
+      "emoji": "🌪️",
+      "installer": {
+        "type": "git",
+        "repo": "https://github.com/v1s1t0r1sh3r3/airgeddon"
+      },
+      "tags": [
+        "wifi",
+        "framework"
+      ]
+    },
+    {
+      "id": "metasploit",
+      "name": "Metasploit Framework",
+      "description": "Framework de explotación líder",
+      "category": "EXPLOITATION",
+      "emoji": "💣",
+      "installer": {
+        "type": "apt",
+        "pkg": "metasploit-framework"
+      },
+      "tags": [
+        "exploit",
+        "framework"
+      ]
+    },
+    {
+      "id": "exploitdb",
+      "name": "Exploit-DB",
+      "description": "Base de datos local de exploits (searchsploit)",
+      "category": "EXPLOITATION",
+      "emoji": "📚",
+      "installer": {
+        "type": "apt",
+        "pkg": "exploitdb"
+      },
+      "tags": [
+        "exploit",
+        "db",
+        "searchsploit"
+      ]
+    },
+    {
+      "id": "set",
+      "name": "Social-Engineer Toolkit",
+      "description": "Toolkit de ingeniería social",
+      "category": "EXPLOITATION",
+      "emoji": "🎭",
+      "installer": {
+        "type": "apt",
+        "pkg": "set"
+      },
+      "tags": [
+        "social",
+        "phishing"
+      ]
+    },
+    {
+      "id": "beef-xss",
+      "name": "BeEF",
+      "description": "Browser Exploitation Framework",
+      "category": "EXPLOITATION",
+      "emoji": "🐮",
+      "installer": {
+        "type": "apt",
+        "pkg": "beef-xss"
+      },
+      "tags": [
+        "xss",
+        "browser",
+        "framework"
+      ]
+    },
+    {
+      "id": "sliver",
+      "name": "Sliver C2",
+      "description": "C2 moderno de BishopFox",
+      "category": "EXPLOITATION",
+      "emoji": "🗡️",
+      "installer": {
+        "type": "script",
+        "curlUrl": "https://sliver.sh/install"
+      },
+      "tags": [
+        "c2",
+        "post-ex"
+      ]
+    },
+    {
+      "id": "villain",
+      "name": "Villain",
+      "description": "C2 multi-canal con shells reversas",
+      "category": "EXPLOITATION",
+      "emoji": "🦹",
+      "installer": {
+        "type": "git",
+        "repo": "https://github.com/t3l3machus/Villain",
+        "postInstall": [
+          "pip install -r requirements.txt --break-system-packages"
+        ]
+      },
+      "tags": [
+        "c2",
+        "reverse-shell"
+      ]
+    },
+    {
+      "id": "pwncat",
+      "name": "Pwncat-cs",
+      "description": "Shell reversa con post-explotación",
+      "category": "EXPLOITATION",
+      "emoji": "🐱",
+      "installer": {
+        "type": "pip",
+        "pkg": "pwncat-cs"
+      },
+      "tags": [
+        "reverse-shell",
+        "post-ex"
+      ]
+    },
+    {
+      "id": "powersploit",
+      "name": "PowerSploit",
+      "description": "Scripts PowerShell post-ex",
+      "category": "EXPLOITATION",
+      "emoji": "⚡",
+      "installer": {
+        "type": "git",
+        "repo": "https://github.com/PowerShellMafia/PowerSploit"
+      },
+      "tags": [
+        "powershell",
+        "post-ex",
+        "windows"
+      ]
+    },
+    {
+      "id": "nishang",
+      "name": "Nishang",
+      "description": "Framework PowerShell ofensivo",
+      "category": "EXPLOITATION",
+      "emoji": "🐍",
+      "installer": {
+        "type": "git",
+        "repo": "https://github.com/samratashok/nishang"
+      },
+      "tags": [
+        "powershell",
+        "offensive",
+        "windows"
+      ]
+    },
+    {
+      "id": "evil-winrm",
+      "name": "Evil-WinRM",
+      "description": "Shell WinRM para Windows",
+      "category": "EXPLOITATION",
+      "emoji": "👹",
+      "installer": {
+        "type": "apt",
+        "pkg": "evil-winrm"
+      },
+      "tags": [
+        "winrm",
+        "windows",
+        "shell"
+      ]
+    },
+    {
+      "id": "netexec",
+      "name": "NetExec",
+      "description": "Sucesor de CrackMapExec",
+      "category": "AD",
+      "emoji": "🌐",
+      "installer": {
+        "type": "pipx",
+        "source": "git+https://github.com/Pennyw0rth/NetExec"
+      },
+      "tags": [
+        "ad",
+        "smb",
+        "windows"
+      ]
+    },
+    {
+      "id": "impacket",
+      "name": "Impacket",
+      "description": "Scripts Python para protocolos de red Windows",
+      "category": "AD",
+      "emoji": "📦",
+      "installer": {
+        "type": "apt",
+        "pkg": "impacket-scripts"
+      },
+      "tags": [
+        "ad",
+        "windows",
+        "smb"
+      ]
+    },
+    {
+      "id": "ligolo-ng",
+      "name": "Ligolo-ng",
+      "description": "Tunneling reverso",
+      "category": "AD",
+      "emoji": "🚇",
+      "installer": {
+        "type": "git",
+        "repo": "https://github.com/nicocha30/ligolo-ng",
+        "postInstall": [
+          "go build -o ligolo-ng cmd/agent/main.go"
+        ]
+      },
+      "tags": [
+        "tunnel",
+        "pivot",
+        "ad"
+      ]
+    },
+    {
+      "id": "enum4linux-ng",
+      "name": "enum4linux-ng",
+      "description": "Reescritura moderna de enum4linux",
+      "category": "AD",
+      "emoji": "🔎",
+      "installer": {
+        "type": "git",
+        "repo": "https://github.com/cddmp/enum4linux-ng",
+        "postInstall": [
+          "pip install -r requirements.txt --break-system-packages"
+        ]
+      },
+      "tags": [
+        "smb",
+        "ad",
+        "enum"
+      ]
+    },
+    {
+      "id": "bloodhound",
+      "name": "BloodHound",
+      "description": "Análisis gráfico de relaciones AD",
+      "category": "AD",
+      "emoji": "🩸",
+      "installer": {
+        "type": "apt",
+        "pkg": "bloodhound"
+      },
+      "tags": [
+        "ad",
+        "graph",
+        "analysis"
+      ]
+    },
+    {
+      "id": "neo4j",
+      "name": "Neo4j",
+      "description": "Base de datos de grafos para BloodHound",
+      "category": "AD",
+      "emoji": "🟢",
+      "installer": {
+        "type": "apt",
+        "pkg": "neo4j"
+      },
+      "tags": [
+        "db",
+        "graph",
+        "bloodhound"
+      ]
+    },
+    {
+      "id": "responder",
+      "name": "Responder",
+      "description": "Envenenador LLMNR/NBT-NS/MDNS",
+      "category": "AD",
+      "emoji": "📢",
+      "installer": {
+        "type": "apt",
+        "pkg": "responder"
+      },
+      "tags": [
+        "llmnr",
+        "poisoning",
+        "ad"
+      ]
+    },
+    {
+      "id": "john",
+      "name": "John the Ripper",
+      "description": "Cracker de contraseñas clásico",
+      "category": "PASSWORDS",
+      "emoji": "🃏",
+      "installer": {
+        "type": "apt",
+        "pkg": "john"
+      },
+      "tags": [
+        "crack",
+        "password"
+      ]
+    },
+    {
+      "id": "hashcat",
+      "name": "Hashcat",
+      "description": "Cracker GPU multi-algoritmo",
+      "category": "PASSWORDS",
+      "emoji": "#️⃣",
+      "installer": {
+        "type": "apt",
+        "pkg": "hashcat"
+      },
+      "tags": [
+        "crack",
+        "gpu",
+        "hash"
+      ]
+    },
+    {
+      "id": "hydra",
+      "name": "Hydra",
+      "description": "Brute-force de servicios de red",
+      "category": "PASSWORDS",
+      "emoji": "🐉",
+      "installer": {
+        "type": "apt",
+        "pkg": "hydra"
+      },
+      "tags": [
+        "brute",
+        "network"
+      ]
+    },
+    {
+      "id": "medusa",
+      "name": "Medusa",
+      "description": "Brute-force paralelo",
+      "category": "PASSWORDS",
+      "emoji": "🐍",
+      "installer": {
+        "type": "apt",
+        "pkg": "medusa"
+      },
+      "tags": [
+        "brute",
+        "parallel"
+      ]
+    },
+    {
+      "id": "crunch",
+      "name": "Crunch",
+      "description": "Generador de wordlists",
+      "category": "PASSWORDS",
+      "emoji": "🥣",
+      "installer": {
+        "type": "apt",
+        "pkg": "crunch"
+      },
+      "tags": [
+        "wordlist",
+        "generator"
+      ]
+    },
+    {
+      "id": "cewl",
+      "name": "CeWL",
+      "description": "Wordlist crawleando un sitio web",
+      "category": "PASSWORDS",
+      "emoji": "🕸️",
+      "installer": {
+        "type": "apt",
+        "pkg": "cewl"
+      },
+      "tags": [
+        "wordlist",
+        "web"
+      ]
+    },
+    {
+      "id": "mentalist",
+      "name": "Mentalist",
+      "description": "Generador de wordlists con reglas (GUI)",
+      "category": "PASSWORDS",
+      "emoji": "🧙",
+      "installer": {
+        "type": "git",
+        "repo": "https://github.com/sc0tfree/mentalist"
+      },
+      "tags": [
+        "wordlist",
+        "rules"
+      ]
+    },
+    {
+      "id": "pydictor",
+      "name": "Pydictor",
+      "description": "Generador de wordlists inteligente",
+      "category": "PASSWORDS",
+      "emoji": "📖",
+      "installer": {
+        "type": "git",
+        "repo": "https://github.com/LandGrey/pydictor"
+      },
+      "tags": [
+        "wordlist",
+        "smart"
+      ]
+    },
+    {
+      "id": "trevorspray",
+      "name": "TREVORspray",
+      "description": "Password spray para O365/Azure",
+      "category": "PASSWORDS",
+      "emoji": "💦",
+      "installer": {
+        "type": "pip",
+        "pkg": "trevorspray"
+      },
+      "tags": [
+        "spray",
+        "o365",
+        "azure"
+      ]
+    },
+    {
+      "id": "frida",
+      "name": "Frida",
+      "description": "Hooking dinámico de apps",
+      "category": "ANDROID",
+      "emoji": "🪝",
+      "installer": {
+        "type": "pip",
+        "pkg": "frida-tools"
+      },
+      "tags": [
+        "hooking",
+        "dynamic",
+        "mobile"
+      ]
+    },
+    {
+      "id": "objection",
+      "name": "Objection",
+      "description": "Wrapper de Frida para mobile",
+      "category": "ANDROID",
+      "emoji": "🛠️",
+      "installer": {
+        "type": "pip",
+        "pkg": "objection"
+      },
+      "tags": [
+        "frida",
+        "mobile"
+      ]
+    },
+    {
+      "id": "apkleaks",
+      "name": "APKLeaks",
+      "description": "Busca secretos en APKs",
+      "category": "ANDROID",
+      "emoji": "💧",
+      "installer": {
+        "type": "pip",
+        "pkg": "apkleaks"
+      },
+      "tags": [
+        "apk",
+        "secrets",
+        "static"
+      ]
+    },
+    {
+      "id": "mobsf",
+      "name": "MobSF",
+      "description": "Mobile Security Framework",
+      "category": "ANDROID",
+      "emoji": "📱",
+      "installer": {
+        "type": "docker",
+        "image": "opensecurity/mobile-security-framework-mobsf",
+        "runArgs": "-it -p 8000:8000"
+      },
+      "tags": [
+        "mobile",
+        "framework",
+        "docker"
+      ]
+    },
+    {
+      "id": "apktool",
+      "name": "Apktool",
+      "description": "Reversa y rebuild de APKs",
+      "category": "ANDROID",
+      "emoji": "🔧",
+      "installer": {
+        "type": "apt",
+        "pkg": "apktool"
+      },
+      "tags": [
+        "apk",
+        "reverse"
+      ]
+    },
+    {
+      "id": "jadx",
+      "name": "Jadx",
+      "description": "Decompilador APK→Java",
+      "category": "ANDROID",
+      "emoji": "☕",
+      "installer": {
+        "type": "apt",
+        "pkg": "jadx"
+      },
+      "tags": [
+        "apk",
+        "decompile",
+        "java"
+      ]
+    },
+    {
+      "id": "ghidra",
+      "name": "Ghidra",
+      "description": "Suite de RE de la NSA",
+      "category": "ANDROID",
+      "emoji": "🐉",
+      "installer": {
+        "type": "apt",
+        "pkg": "ghidra"
+      },
+      "tags": [
+        "reverse",
+        "re",
+        "nsa"
+      ]
+    },
+    {
+      "id": "radare2",
+      "name": "radare2",
+      "description": "Framework de reversing CLI",
+      "category": "ANDROID",
+      "emoji": "📐",
+      "installer": {
+        "type": "apt",
+        "pkg": "radare2"
+      },
+      "tags": [
+        "reverse",
+        "cli"
+      ]
+    },
+    {
+      "id": "autopsy",
+      "name": "Autopsy",
+      "description": "GUI sobre Sleuth Kit",
+      "category": "FORENSICS",
+      "emoji": "🔬",
+      "installer": {
+        "type": "apt",
+        "pkg": "autopsy"
+      },
+      "tags": [
+        "forensics",
+        "gui"
+      ]
+    },
+    {
+      "id": "binwalk",
+      "name": "Binwalk",
+      "description": "Análisis de firmware",
+      "category": "FORENSICS",
+      "emoji": "🧱",
+      "installer": {
+        "type": "apt",
+        "pkg": "binwalk"
+      },
+      "tags": [
+        "firmware",
+        "embedded"
+      ]
+    },
+    {
+      "id": "foremost",
+      "name": "Foremost",
+      "description": "Recuperación de archivos por carving",
+      "category": "FORENSICS",
+      "emoji": "🪚",
+      "installer": {
+        "type": "apt",
+        "pkg": "foremost"
+      },
+      "tags": [
+        "recovery",
+        "carving"
+      ]
+    },
+    {
+      "id": "volatility3",
+      "name": "Volatility 3",
+      "description": "Análisis forense de memoria",
+      "category": "FORENSICS",
+      "emoji": "🧠",
+      "installer": {
+        "type": "apt",
+        "pkg": "volatility3"
+      },
+      "tags": [
+        "memory",
+        "forensics"
+      ]
+    },
+    {
+      "id": "bulk-extractor",
+      "name": "Bulk Extractor",
+      "description": "Extracción de features de imágenes",
+      "category": "FORENSICS",
+      "emoji": "📤",
+      "installer": {
+        "type": "apt",
+        "pkg": "bulk-extractor"
+      },
+      "tags": [
+        "forensics",
+        "images"
+      ]
+    },
+    {
+      "id": "exiftool",
+      "name": "ExifTool",
+      "description": "Lectura/escritura de metadatos",
+      "category": "FORENSICS",
+      "emoji": "🏷️",
+      "installer": {
+        "type": "apt",
+        "pkg": "libimage-exiftool-perl"
+      },
+      "tags": [
+        "metadata",
+        "exif"
+      ]
+    },
+    {
+      "id": "seclists",
+      "name": "SecLists",
+      "description": "La colección de wordlists más completa",
+      "category": "WORDLISTS",
+      "emoji": "📚",
+      "installer": {
+        "type": "git",
+        "repo": "https://github.com/danielmiessler/SecLists",
+        "cloneTo": "/opt/seclists"
+      },
+      "tags": [
+        "wordlists",
+        "collection"
+      ]
+    },
+    {
+      "id": "payloadsallthethings",
+      "name": "PayloadsAllTheThings",
+      "description": "Payloads y bypasses por categoría",
+      "category": "WORDLISTS",
+      "emoji": "🧪",
+      "installer": {
+        "type": "git",
+        "repo": "https://github.com/swisskyrepo/PayloadsAllTheThings",
+        "cloneTo": "/opt/payloads"
+      },
+      "tags": [
+        "payloads",
+        "bypasses"
+      ]
+    },
+    {
+      "id": "duckpayloads",
+      "name": "USB Rubber Ducky payloads",
+      "description": "Payloads HID/BadUSB",
+      "category": "WORDLISTS",
+      "emoji": "🦆",
+      "installer": {
+        "type": "git",
+        "repo": "https://github.com/hak5/usbrubberducky-payloads",
+        "cloneTo": "/opt/duck-payloads"
+      },
+      "tags": [
+        "hid",
+        "badusb",
+        "payloads"
+      ]
+    }
+  ]
+}

@@ -2,7 +2,9 @@ package com.netoolhunter.app.domain
 
 import androidx.compose.ui.graphics.Color
 import com.netoolhunter.app.ui.theme.KaliBlue
+import kotlinx.serialization.Serializable
 
+@Serializable
 enum class Category(
     val emoji: String,
     val label: String,

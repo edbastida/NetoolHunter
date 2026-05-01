@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.netoolhunter.app.NetoolHunterApp
-import com.netoolhunter.app.data.ToolsCatalog
+import com.netoolhunter.app.data.CatalogRepository
 import com.netoolhunter.app.domain.Category
 import com.netoolhunter.app.domain.Tool
 import com.netoolhunter.app.shell.InstallForegroundService
@@ -18,11 +18,13 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 data class ToolsUiState(
-    val tools: List<Tool> = ToolsCatalog.ALL,
+    val tools: List<Tool> = emptyList(),
     val query: String = "",
     val selectedCategories: Set<Category> = emptySet(),
     val installedIds: Set<String> = emptySet(),
-    val scanning: Boolean = false
+    val scanning: Boolean = false,
+    val updatingCatalog: Boolean = false,
+    val catalogUpdateMessage: String? = null
 ) {
     val visibleTools: List<Tool>
         get() {
@@ -47,6 +49,11 @@ class ToolsViewModel(application: Application) : AndroidViewModel(application) {
     val state: StateFlow<ToolsUiState> = _state.asStateFlow()
 
     init {
+        viewModelScope.launch {
+            app.catalog.tools.collect { tools ->
+                _state.update { it.copy(tools = tools) }
+            }
+        }
         viewModelScope.launch {
             app.installed.installedIds.collect { ids ->
                 _state.update { it.copy(installedIds = ids) }
@@ -95,4 +102,20 @@ class ToolsViewModel(application: Application) : AndroidViewModel(application) {
             _state.update { it.copy(scanning = false) }
         }
     }
+
+    fun updateCatalog() {
+        _state.update { it.copy(updatingCatalog = true, catalogUpdateMessage = null) }
+        viewModelScope.launch {
+            val result = app.catalog.updateFromUrl()
+            val msg = when (result) {
+                is CatalogRepository.UpdateResult.Success ->
+                    "Catálogo actualizado: ${result.toolCount} herramientas"
+                is CatalogRepository.UpdateResult.Failed ->
+                    "Error al actualizar: ${result.reason}"
+            }
+            _state.update { it.copy(updatingCatalog = false, catalogUpdateMessage = msg) }
+        }
+    }
+
+    fun dismissCatalogMessage() = _state.update { it.copy(catalogUpdateMessage = null) }
 }

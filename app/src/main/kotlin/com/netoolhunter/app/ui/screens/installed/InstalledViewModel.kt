@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.netoolhunter.app.NetoolHunterApp
-import com.netoolhunter.app.data.ToolsCatalog
 import com.netoolhunter.app.domain.Tool
 import com.netoolhunter.app.shell.InstallForegroundService
 import com.netoolhunter.app.shell.KaliCommand
@@ -28,9 +27,8 @@ class InstalledViewModel(application: Application) : AndroidViewModel(applicatio
     init {
         viewModelScope.launch {
             app.installed.installedIds.collect { ids ->
-                _state.update {
-                    it.copy(installedTools = ToolsCatalog.ALL.filter { tool -> tool.id in ids })
-                }
+                val tools = app.catalog.tools.value.filter { it.id in ids }
+                _state.update { it.copy(installedTools = tools) }
             }
         }
         rescan()

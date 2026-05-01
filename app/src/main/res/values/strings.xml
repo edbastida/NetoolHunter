@@ -94,6 +94,11 @@
     <string name="notif_install_title">Instalando %1$s</string>
     <string name="notif_install_body">El proceso continúa en segundo plano.</string>
 
+    <!-- Catalog update -->
+    <string name="catalog_update_action">Buscar actualizaciones</string>
+    <string name="catalog_update_confirm_title">Actualizar catálogo</string>
+    <string name="catalog_update_confirm_body">Se descargará la última lista de herramientas desde el repo en GitHub. Esta es la única operación de red que NetoolHunter realiza, y requiere tu confirmación cada vez.</string>
+
     <!-- Errors -->
     <string name="error_no_root">No se detectó acceso root.</string>
     <string name="error_no_nh">No se detectó wrapper para el chroot Kali (nh ni bootkali).</string>

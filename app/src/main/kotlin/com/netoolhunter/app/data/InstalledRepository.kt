@@ -3,19 +3,19 @@ package com.netoolhunter.app.data
 import com.netoolhunter.app.domain.Tool
 import com.netoolhunter.app.shell.KaliCommand
 import com.netoolhunter.app.shell.ShellExecutor
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.flatMapMerge
-import kotlinx.coroutines.flow.fold
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.asFlow
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.fold
 
 class InstalledRepository(
-    private val shell: ShellExecutor
+    private val shell: ShellExecutor,
+    private val catalog: CatalogRepository
 ) {
     private val _installedIds = MutableStateFlow<Set<String>>(emptySet())
     val installedIds: StateFlow<Set<String>> = _installedIds.asStateFlow()
@@ -27,7 +27,7 @@ class InstalledRepository(
      */
     @OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
     suspend fun scan(): Set<String> {
-        val tools = ToolsCatalog.ALL
+        val tools = catalog.tools.value
         val installed: Set<String> = tools.asFlow()
             .flatMapMerge(concurrency = 4) { tool ->
                 flow {
@@ -45,7 +45,7 @@ class InstalledRepository(
     fun isInstalled(toolId: String): Boolean = toolId in _installedIds.value
 
     fun installedTools(): List<Tool> =
-        ToolsCatalog.ALL.filter { it.id in _installedIds.value }
+        catalog.tools.value.filter { it.id in _installedIds.value }
 
     /** Optimistically mark a tool as (un)installed without re-scanning. */
     fun markInstalled(toolId: String, installed: Boolean) {
